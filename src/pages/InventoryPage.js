@@ -20,12 +20,19 @@ export class InventoryPage {
     const item = this.page
       .locator(".inventory_item")
       .filter({ hasText: productName });
-    const removeButton = item.locator('[data-test^="remove"]');
+    const removeButton = item.locator('[data-test*="remove"]');
     await removeButton.click();
   }
 
   async sortProducts(sortOption) {
-    await this.sortDropdown.selectOption(sortOption);
+    // אפשרויות המיון:
+    // az - Name (A to Z)
+    // za - Name (Z to A)
+    // lohi - Price (low to high)
+    // hilo - Price (high to low)
+    await this.page
+      .locator('[data-test="product_sort_container"]')
+      .selectOption(sortOption);
   }
 
   async getProductPrice(productName) {

@@ -24,14 +24,18 @@ test.describe("Inventory tests", () => {
   test("Can remove item from cart", async ({ page }) => {
     const inventoryPage = new InventoryPage(page);
     await inventoryPage.addToCart("Sauce Labs Backpack");
+    await page.waitForTimeout(1000); // המתנה קצרה לעדכון העגלה
     expect(await inventoryPage.getCartCount()).toBe(1);
     await inventoryPage.removeFromCart("Sauce Labs Backpack");
+    await page.waitForTimeout(1000); // המתנה קצרה לעדכון העגלה
     expect(await inventoryPage.getCartCount()).toBe(0);
   });
 
   test("Can sort products", async ({ page }) => {
     const inventoryPage = new InventoryPage(page);
-    await inventoryPage.sortProducts("za");
+    await page.waitForLoadState("networkidle"); // המתנה לטעינת העמוד
+    await inventoryPage.sortProducts("za"); // Name (Z to A)
+    await page.waitForTimeout(1000); // המתנה לסיום המיון
     const products = await inventoryPage.getProductsList();
     // Verify products are sorted Z to A
     const names = products.map((p) => p.name);

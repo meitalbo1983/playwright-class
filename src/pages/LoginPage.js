@@ -11,7 +11,13 @@ export class LoginPage {
     this.errorMessage = page.locator('[data-test="error"]');
   }
   async openLoginPage() {
-    await this.page.goto(BASE_URL);
+    try {
+      await this.page.goto(BASE_URL, { timeout: 30000 });
+    } catch (error) {
+      console.log("Failed to load page, retrying...");
+      await this.page.waitForTimeout(2000);
+      await this.page.goto(BASE_URL, { timeout: 30000 });
+    }
   }
 
   async login(username, password) {
