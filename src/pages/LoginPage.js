@@ -3,11 +3,9 @@ import { BASE_URL } from "../data/urls.js";
 export class LoginPage {
   constructor(page) {
     this.page = page;
-    this.userNameField = page.getByRole("textbox", { name: "Username" });
-    this.passwordField = page
-      .getByRole("textbox", { name: "Password" })
-      .or(page.locator('[data-test="password"]'));
-    this.loginButton = page.getByRole("button", { name: "Login" });
+    this.userNameField = page.locator('[data-test="username"]');
+    this.passwordField = page.locator('[data-test="password"]');
+    this.loginButton = page.locator('[data-test="login-button"]');
     this.errorMessage = page.locator('[data-test="error"]');
   }
   async openLoginPage() {

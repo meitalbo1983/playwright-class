@@ -25,9 +25,13 @@ export class InventoryPage {
   }
 
   async sortProducts(sortOption) {
-    // אפשרויות המיון:
-    // az - Name (A to Z)
-    // za - Name (Z to A)
+    const options = {
+      az: "az", // Name (A to Z)
+      za: "za", // Name (Z to A)
+      lohi: "lohi", // Price (low to high)
+      hilo: "hilo", // Price (high to low)
+    };
+    await this.sortDropdown.selectOption(options[sortOption]);
     // lohi - Price (low to high)
     // hilo - Price (high to low)
     await this.page

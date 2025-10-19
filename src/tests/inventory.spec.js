@@ -33,9 +33,11 @@ test.describe("Inventory tests", () => {
 
   test("Can sort products", async ({ page }) => {
     const inventoryPage = new InventoryPage(page);
-    await page.waitForLoadState("networkidle"); // המתנה לטעינת העמוד
-    await inventoryPage.sortProducts("za"); // Name (Z to A)
-    await page.waitForTimeout(1000); // המתנה לסיום המיון
+    await page.waitForLoadState("networkidle");
+
+    // מיון לפי שם מ-Z ל-A
+    await inventoryPage.sortProducts("za");
+    await page.waitForLoadState("networkidle");
     const products = await inventoryPage.getProductsList();
     // Verify products are sorted Z to A
     const names = products.map((p) => p.name);
