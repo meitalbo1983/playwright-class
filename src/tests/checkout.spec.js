@@ -20,7 +20,7 @@ test.describe("Checkout tests", () => {
     );
 
     await inventoryPage.addToCart("Sauce Labs Backpack");
-    await inventoryPage.goToCart();
+    await inventoryPage.openCart();
   });
 
   test("Complete checkout process", async ({ page }) => {

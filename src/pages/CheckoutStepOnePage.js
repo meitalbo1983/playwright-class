@@ -50,4 +50,9 @@ export class CheckoutStepOnePage {
       currentPostalCode === postalCode
     );
   }
+
+  async continueCheckout(firstName, lastName, postalCode) {
+    await this.fillForm(firstName, lastName, postalCode);
+    await this.continue();
+  }
 }

@@ -6,6 +6,16 @@ export class InventoryPage {
     this.cartCounter = page.locator(".shopping_cart_badge");
     this.inventoryItems = page.locator(".inventory_item");
     this.sortDropdown = page.locator('[data-test="product_sort_container"]');
+    this.productImages = page.locator(".inventory_item img");
+    this.productNames = page.locator(".inventory_item_name");
+    this.productPrices = page.locator(".inventory_item_price");
+  }
+
+  async addItemToCart(index) {
+    const addButtons = await this.page
+      .locator('[data-test^="add-to-cart"]')
+      .all();
+    await addButtons[index].click();
   }
 
   async addToCart(productName) {
@@ -45,6 +55,37 @@ export class InventoryPage {
       .filter({ hasText: productName });
     const priceText = await item.locator(".inventory_item_price").textContent();
     return parseFloat(priceText.replace("$", ""));
+  }
+
+  async addItemToCart(index) {
+    const addButtons = this.page.locator('[data-test^="add-to-cart"]');
+    await addButtons.nth(index).click();
+  }
+
+  async openCart() {
+    await this.shoppingCartIcon.click();
+  }
+
+  async getAllProductImages() {
+    return await this.productImages.all();
+  }
+
+  async getAllProductNames() {
+    const elements = await this.productNames.all();
+    const names = [];
+    for (const element of elements) {
+      names.push(await element.textContent());
+    }
+    return names;
+  }
+
+  async getAllProductPrices() {
+    const elements = await this.productPrices.all();
+    const prices = [];
+    for (const element of elements) {
+      prices.push(await element.textContent());
+    }
+    return prices;
   }
 
   async getCartCount() {
