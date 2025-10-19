@@ -19,7 +19,6 @@ test.describe("Problem Users Tests", () => {
 			VALID_USERS.problem_user.password,
 		);
 
-		// Verify login successful
 		await expect(page).toHaveURL(URLS.inventoryPage);
 		await expect(inventoryPage.title).toHaveText("Products");
 	});
@@ -33,7 +32,6 @@ test.describe("Problem Users Tests", () => {
 			VALID_USERS.performance_glitch_user.password,
 		);
 
-		// Verify login successful
 		await expect(page).toHaveURL(URLS.inventoryPage);
 		await expect(inventoryPage.title).toHaveText("Products");
 	});
@@ -47,7 +45,6 @@ test.describe("Problem Users Tests", () => {
 			VALID_USERS.error_user.password,
 		);
 
-		// Verify login successful
 		await expect(page).toHaveURL(URLS.inventoryPage);
 		await expect(inventoryPage.title).toHaveText("Products");
 	});
