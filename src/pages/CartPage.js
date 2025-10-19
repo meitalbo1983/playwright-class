@@ -27,6 +27,10 @@ export class CartPage {
     await item.locator('[data-test*="remove"]').click();
   }
 
+  async getCartItems() {
+    return await this.cartItems.all();
+  }
+
   async validateItemPrice(productName, expectedPrice) {
     const item = this.cartItems.filter({ hasText: productName });
     const priceText = await item.locator(".inventory_item_price").textContent();

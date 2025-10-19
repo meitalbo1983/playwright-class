@@ -41,12 +41,11 @@ export class InventoryPage {
       lohi: "lohi", // Price (low to high)
       hilo: "hilo", // Price (high to low)
     };
+
+    await this.page.waitForSelector('[data-test="product_sort_container"]');
     await this.sortDropdown.selectOption(options[sortOption]);
-    // lohi - Price (low to high)
-    // hilo - Price (high to low)
-    await this.page
-      .locator('[data-test="product_sort_container"]')
-      .selectOption(sortOption);
+    // Wait for sorting to complete
+    await this.page.waitForTimeout(1000);
   }
 
   async getProductPrice(productName) {

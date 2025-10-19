@@ -14,6 +14,10 @@ export class CheckoutStepTwoPage {
 
   async cancel() {
     await this.cancelButton.click();
+    // Wait for navigation to complete
+    await this.page.waitForURL(/.*\/inventory.html/);
+    // Navigate back to cart
+    await this.page.goto("https://www.saucedemo.com/cart.html");
   }
 
   async getSubtotal() {
