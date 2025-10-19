@@ -14,7 +14,7 @@ test.describe("E2E Sanity Tests", () => {
 		const loginPage = new LoginPage(page);
 		await loginPage.openLoginPage();
 	});
-	test.only("Complete purchase flow", async ({ page }) => {
+	test("Complete purchase flow", async ({ page }) => {
 		// 1. התחברות למערכת
 		const loginPage = new LoginPage(page);
 		const inventoryPage = new InventoryPage(page);
