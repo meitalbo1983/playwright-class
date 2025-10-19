@@ -12,7 +12,7 @@ export class InventoryPage {
     const item = this.page
       .locator(".inventory_item")
       .filter({ hasText: productName });
-    const addButton = item.locator('button:has-text("Add to cart")');
+    const addButton = item.locator('[data-test^="add-to-cart"]');
     await addButton.click();
   }
 
@@ -20,7 +20,7 @@ export class InventoryPage {
     const item = this.page
       .locator(".inventory_item")
       .filter({ hasText: productName });
-    const removeButton = item.locator('button:has-text("Remove")');
+    const removeButton = item.locator('[data-test^="remove"]');
     await removeButton.click();
   }
 

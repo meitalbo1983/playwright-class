@@ -4,7 +4,9 @@ export class LoginPage {
   constructor(page) {
     this.page = page;
     this.userNameField = page.getByRole("textbox", { name: "Username" });
-    this.passwordField = page.getByRole("textbox", { name: "Password" });
+    this.passwordField = page
+      .getByRole("textbox", { name: "Password" })
+      .or(page.locator('[data-test="password"]'));
     this.loginButton = page.getByRole("button", { name: "Login" });
     this.errorMessage = page.locator('[data-test="error"]');
   }
