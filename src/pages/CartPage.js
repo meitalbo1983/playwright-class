@@ -24,7 +24,23 @@ export class CartPage {
 
   async removeItem(productName) {
     const item = this.cartItems.filter({ hasText: productName });
-    await item.locator('button:has-text("Remove")').click();
+    await item.locator('[data-test*="remove"]').click();
+  }
+
+  async validateItemPrice(productName, expectedPrice) {
+    const item = this.cartItems.filter({ hasText: productName });
+    const priceText = await item.locator(".inventory_item_price").textContent();
+    return parseFloat(priceText.replace("$", "")) === expectedPrice;
+  }
+
+  async getItemTotal() {
+    const items = await this.getItemsInCart();
+    return items.reduce((total, item) => {
+      return (
+        total +
+        parseFloat(item.price.replace("$", "")) * parseInt(item.quantity)
+      );
+    }, 0);
   }
 
   async continueShopping() {

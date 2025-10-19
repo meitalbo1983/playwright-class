@@ -8,7 +8,9 @@ import { CheckoutCompletePage } from "../pages/CheckoutCompletePage.js";
 import { VALID_USERS } from "../data/users.js";
 import { URLS } from "../data/urls.js";
 
+// הגדרת זמן ארוך יותר לבדיקות סאניטי
 test.describe("E2E Sanity Tests", () => {
+  test.setTimeout(35000); // הגדרת timeout ארוך יותר למקרה של משתמש עם בעיות ביצועים
   test("Complete purchase flow", async ({ page }) => {
     // 1. התחברות למערכת
     const loginPage = new LoginPage(page);
